@@ -4,20 +4,18 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
-                template="template.xhtml"
+                template="../template.xhtml"
                 xmlns:f="http://java.sun.com/jsf/core">
                     
     
     <ui:define name="corpo">
-        <title>Pagina Base</title>   
+        <title>Pagina Inicial</title>   
         <h:form>
         <p:growl id="growl" life="5000" autoUpdate="true" showSummary="true" showDetail="true"/>
-
+        <h3>Bem Vindo!</h3>
         <h:panelGrid columns="4" cellpadding="10">
-            
-                <p:outputLabel for="nome" value="Nome:"/>
-                <p:inputText id="nome" value="" size="40" placeholder="texto texto" label="Nome" required="true" />
-                <p:commandButton value="Limpar" type="reset"/>
+            BIDTAE, acrônimo de Biblioteca Digital de Trabalhos Acadêmicos Estudantis, é um software que permite aos estudantes adicionar e consultar trabalhos acadêmicos, sejam TCCs ou artigos científicos, possibilitando sua categorização e buscas, com o objetivo de compartilhamento de conhecimento.
+
         </h:panelGrid>
         </h:form>
     </ui:define>

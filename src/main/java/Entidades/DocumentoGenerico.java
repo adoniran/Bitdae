@@ -5,9 +5,14 @@
  */
 package Entidades;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,7 +36,8 @@ public class DocumentoGenerico implements Serializable {
     private String titulo;
     @Column(name="resumo")
     private String resumo;
-    
+    @Column(name = "file")
+    private byte[] file;
 
     public Long getId() {
         return id;
@@ -81,5 +87,44 @@ public class DocumentoGenerico implements Serializable {
     public String toString() {
         return "Titulo:"+titulo+" Resumo:"+resumo;
     }
-    
+    public boolean insertFile(File f) {
+
+        try {
+//          //converte o objeto file em array de bytes
+            InputStream is = new FileInputStream(f);
+            byte[] bytes = new byte[(int) f.length()];
+            int offset = 0;
+            int numRead = 0;
+            while (offset < bytes.length
+                    && (numRead = is.read(bytes, offset, bytes.length - offset)) >= 0) {
+                offset += numRead;
+            }
+
+            this.file = bytes;
+
+            return true;
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+
+        }
+        return false;
+    }
+
+    public File getFile(EntityManager em) {
+
+        File f = null;
+        byte[] bytes = this.file;
+
+        //converte o array de bytes em file
+        f = new File("/local_a_ser_salvo/" + this.titulo);
+        try (FileOutputStream fos = new FileOutputStream(f)) {
+            fos.write(bytes);
+
+            return f;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
 }

@@ -10,8 +10,10 @@ import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import Entidades.DocumentoGenerico;
+import java.io.File;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import org.primefaces.model.UploadedFile;
 
 /**
  *
@@ -22,20 +24,44 @@ import javax.faces.context.FacesContext;
 public class DocumentosG {
 
     private DocumentoGenerico doc;
+    private File file;
 
     public DocumentosG() {
     }
+
+    public DocumentoGenerico getDoc() {
+        return doc;
+    }
+
+    public void setDoc(DocumentoGenerico doc) {
+        this.doc = doc;
+    }
+
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
+    }
+//    public void setFile(UploadedFile file) {
+//        this.file = file;
+//    }
+
     @EJB
     DocumentoGenericoBean bean;
 
     public void salvarDoc() {
-        bean.criar(doc);
+        Boolean test = doc.insertFile(file);
+        if (test) {
+            bean.criar(doc);
 
-        if (doc.getId() != null) {
-            addMessage("Cadastrado com sucesso");
-        } else {
-            addMessage("Não cadastrado");
-        }
+            if (doc.getId() != null) {
+                addMessage("Cadastrado com sucesso");
+            } else {
+                addMessage("Não cadastrado");
+            }
+        }else{addMessage("Falha ao inserir o arquivo");}
     }
 
     public void addMessage(String Mensagem) {
