@@ -3,18 +3,27 @@
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
-	
-		<h:form>
-			<p:panelMenu style="width:250px">
-				<p:submenu label="Menu inicial">
-                                    <p:menuitem value="Pagina inicial" icon="icon-users" url="index.xhtml" />
-                                    <p:menuitem value="Cadastro documento" icon="icon-user" url="cadastroDocumento.xhtml"/>
-				</p:submenu>				
-				<p:submenu label="Menu 2">
-					<p:menuitem value="Função 3" url="/" icon="icon-users" />
-					<p:menuitem value="Função 4" icon="icon-user" />
-				</p:submenu>
-			</p:panelMenu>	
-		</h:form>
+
+    <h:form>
+        <h3>Pesquisa</h3>
+       <a><span><h:form>
+                   <i class="icon-search"></i>
+                   <p:inputText id="search" value="#{documentosG.doc.titulo}"  size="12" placeholder="Search"/>
+                   <p:commandButton value="Search"  oncomplete=""  >
+<!--                       <i class="icon-search"></i>-->
+                   </p:commandButton></h:form></span></a>
+       <br/>
+       <br/>
+        <p:panelMenu style="width:250px">
+            <p:submenu label="Menu inicial">
+                <p:menuitem value="Pagina inicial" icon="icon-users" url="index.xhtml" />
+                <p:menuitem value="Cadastro documento" icon="icon-user" url="cadastroDocumento.xhtml"/>
+            </p:submenu>				
+            <p:submenu label="Menu 2">
+                <p:menuitem value="Função 3" url="/" icon="icon-users" />
+                <p:menuitem value="Função 4" icon="icon-user" />
+            </p:submenu>
+        </p:panelMenu>	
+    </h:form>
 
 </ui:composition>

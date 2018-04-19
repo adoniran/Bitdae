@@ -9,10 +9,10 @@
                     
     
     <ui:define name="corpo">
-        <title>Cadastro documento</title>   
+        <title>Procurar documento</title>   
         <h:form>
             <p:growl id="growl" life="5000" autoUpdate="true" showSummary="true" showDetail="true"/>
-            <h3>Cadastre-se</h3>
+            <h3>Search</h3>
             <h:panelGrid columns="2" cellpadding="10">
 
                 <p:outputLabel for="nome" value="Titulo:"/>
@@ -22,7 +22,7 @@
                 <p:inputTextarea id="desc" rows="6" cols="53" value="#{documentosG.doc.resumo}" placeholder="Defina aqui, um breve resumo de seu trabalho" required="true"/>
 
                 <p:outputLabel for="file" value="Selecione seu arquivo"/>
-                <p:fileUpload id="file" value="#{documentosG.file}" fileLimit="1"/>
+                <p:fileUpload id="file" value="#{documentosG.file}"/>
 
                 <p:commandButton value="Limpar" type="reset"/>
                 <p:commandButton value="Salvar" actionListener="#{documentosG.salvarDoc()}" ajax="true" update="growl"/>
